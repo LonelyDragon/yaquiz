@@ -42,9 +42,4 @@ class Robot:
         return self.res[-1]
     
     def path(self):
-        return ''.join(self.res)
-
-r = Robot((10,10))
-r.move("NSSEWW")
-
-print(r.path())
+        return ''.join(map(lambda x: str(x), self.res))
