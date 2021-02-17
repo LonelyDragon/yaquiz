@@ -36,9 +36,15 @@ class Robot:
         }
 
         for step in direction:
+
             mas[0] += direct[step][0]
             mas[1] += direct[step][1]
-            self.res.append(tuple(mas))
+            if ((0 <= mas[0] <= 100) and (0 <= mas[1] <= 100)):
+                self.res.append(tuple(mas))
+            else:
+                mas[0] -= direct[step][0]
+                mas[1] -= direct[step][1]
+                continue
         return self.res[-1]
     
     def path(self):
