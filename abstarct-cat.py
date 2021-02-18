@@ -18,15 +18,37 @@
 
 '''
 
-class AbstarctCat:
+class AbstractCat:
     
     def __init__(self) -> None:
-        self.
+        self.weight = 0
+        self.scraps = 0
+
+    def eat(self, food):
+        if self.weight < 100:
+            self.weight += (food+self.scraps)//10
+            self.scraps += food%10
+        elif self.weight > 100:
+            self.weight = 100
+
+    def __str__(self) -> str:
+        return self.__class__.__name__ + f'({self.weight})'
+        
 
 
-class Kitten(AbstarctCat):
-    pass
+
+class Kitten(AbstractCat):
+    
+    def __init__(self) -> None:
+        super(AbstractCat, self.weight).__init__()
+
+    def meow(self):
+        return "meow..."
 
 
 class Cat(Kitten):
     pass
+
+
+cat = Kitten()
+print(cat.meow())
