@@ -21,29 +21,37 @@
 class AbstractCat:
     
     def __init__(self) -> None:
-        self.weight = 0
+        self._weight = int()
         self.scraps = 0
 
+    @property
+    def weight(self):
+         return self._weight
+
+    @weight.setter
+    def weight(self):
+        if self._weight > 100:
+            self._weight = 100
+
     def eat(self, food):
-        if self.weight < 100:
-            self.weight += (food+self.scraps)//10
-            self.scraps += food%10
-        elif self.weight > 100:
-            self.weight = 100
+        self._weight += (food+self.scraps)//10
+        self.scraps += food%10
 
     def __str__(self) -> str:
-        return self.__class__.__name__ + f'({self.weight})'
+        return self.__class__.__name__ + f'({self._weight})'
         
 
 
 
 class Kitten(AbstractCat):
-    
-    def __init__(self) -> None:
-        super(AbstractCat, self.weight).__init__()
 
     def meow(self):
-        return "meow..."
+        com = "meow..."
+        return com
+
+    def sleep(self):
+        for i in range(0, self.weight, 5):
+            return "snore..."
 
 
 class Cat(Kitten):
@@ -51,4 +59,5 @@ class Cat(Kitten):
 
 
 cat = Kitten()
-print(cat.meow())
+cat.eat(5000)
+print(cat)

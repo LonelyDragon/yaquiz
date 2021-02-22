@@ -49,3 +49,7 @@ class Robot:
     
     def path(self):
         return ''.join(map(lambda x: str(x), self.res))
+
+
+rob = Robot((-5, 10))
+print(rob)
