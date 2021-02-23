@@ -24,18 +24,12 @@ class AbstractCat:
         self._weight = int()
         self.scraps = 0
 
-    @property
-    def weight(self):
-         return self._weight
-
-    @weight.setter
-    def weight(self):
-        if self._weight > 100:
-            self._weight = 100
-
-    def eat(self, food):
+    def eat(self, food) -> None:
         self._weight += (food+self.scraps)//10
         self.scraps += food%10
+        if self._weight > 100:
+            self._weight = 100
+            return "I'm so fat.."
 
     def __str__(self) -> str:
         return self.__class__.__name__ + f'({self._weight})'
@@ -45,19 +39,25 @@ class AbstractCat:
 
 class Kitten(AbstractCat):
 
-    def meow(self):
-        com = "meow..."
-        return com
+    def meow(self) -> str:
+        return "meow..."
 
-    def sleep(self):
+    def sleep(self) -> str:
         for i in range(0, self.weight, 5):
-            return "snore..."
+            print("snore...")
 
 
 class Cat(Kitten):
-    pass
 
+    def __init__(self, nickname = 'Fluffy') -> None:
+        AbstractCat.__init__(self)
+        self.nickname = nickname
+    
+    def catch_mise(self) -> str:
+        return "Got it!"
 
-cat = Kitten()
-cat.eat(5000)
-print(cat)
+    def meow(self) -> str:
+        return super().meow().upper()
+
+    def get_name(self):
+        return self.nickname
